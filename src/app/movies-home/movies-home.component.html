@@ -1,0 +1,27 @@
+<app-carousel></app-carousel>
+<div class="container" style="padding-top: 1%;">
+<div>
+  <button type="submit" id="sortButton" (click)="sortByTitle()" class="btn btn-outline-danger btn-sm">Sort by Title</button> &nbsp;
+  <button (click)="sortByDate()" class="btn btn-outline-danger btn-sm">Sort by Date</button>
+
+</div>
+
+<div class="row">
+
+  <div class="w-25 p-3" *ngFor="let movie of movies; let i = index">
+    <a [routerLink]="['../movie-details/', i]" class="list-group-item clearfix">
+    
+      <img [src]="[movie.imgsrc]" alt="Movie Img"> </a>
+      <div class="card">
+      <button  (click)="addToWatchlist(movie)" class="btn btn-primary">
+        <ng-container *ngIf="isInWatchlist(movie)">Added to My List</ng-container>
+        <ng-container *ngIf="!isInWatchlist(movie)">Add to My List</ng-container>
+      </button>
+      <div class="card-body">
+        <h2 class="display-1">{{movie.title}}</h2>
+        <p class="small">{{movie.releasedate | date: 'mediumDate'}} - {{movie.duration  }}</p>
+       
+        </div>
+      </div>
+    </div>
+
